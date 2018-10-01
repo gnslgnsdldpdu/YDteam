@@ -37,6 +37,7 @@ public class GoodsDao {
 	
 	public boolean insertItem(ItemDto dto) {
 		boolean result = false;
+		sql = "insert into "
 		try {
 			
 		}
