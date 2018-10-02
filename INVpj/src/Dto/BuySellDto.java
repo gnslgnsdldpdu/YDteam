@@ -5,7 +5,8 @@ public class BuySellDto {
 	private String sellers;
 	private String cp_name;
 	private String address;
-	private int phone;
+	private String phone;
+	private String ceo;
 
 	public String getBuyer() {
 		return buyer;
@@ -39,18 +40,26 @@ public class BuySellDto {
 		this.address = address;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getCeo() {
+		return ceo;
+	}
+
+	public void setCeo(String ceo) {
+		this.ceo = ceo;
 	}
 
 	@Override
 	public String toString() {
 		return "BuySellDto [buyer=" + buyer + ", sellers=" + sellers + ", cp_name=" + cp_name + ", address=" + address
-				+ ", phone=" + phone + "]";
+				+ ", phone=" + phone + ", ceo=" + ceo + "]";
 	}
 
 }
