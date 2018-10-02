@@ -1,11 +1,12 @@
 package Dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Dto.ProductDTO;
 
 public class ProductDAO {
 	private Connection conn;
@@ -13,7 +14,7 @@ public class ProductDAO {
 	private ResultSet rs;
 	private String sql;
 	public int r;
-	
+
 	public ProductDAO() {
 		try {
 			String user = "micol";
@@ -25,25 +26,127 @@ public class ProductDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}// Constructor
-	
-	public ResultSet insertItem(ProductDAO dto) {
-		sql = "insert into input_t values(LPAD(Seq_input.nextval,8,'0'),:buy_num,line,i_code,i_name,quan,unitp,price,inputdate)";
+	}
+
+	public void insertProductInfo(ProductDTO dto) {
+		sql = "insert into input_t (buy_num, line, i_code, i_name, quan, in_price, price, input_date) values(?,?,?,?,?,?,?,?) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			pstmt.setString(1, dto.getB_num());
-			pstmt.setInt(2, dto.getLine());
-			pstmt.setString(2, dto.getI_code());
-			pstmt.setString(3, dto.getI_name());
-			pstmt.setInt(4, dto.getQuan());
-			pstmt.setInt(5, dto.getPrice());
-			pstmt.setDate(6, (Date) dto.getO_date());
-			pstmt.setDate(7, (Date) dto.getI_date());
-			int r = pstmt.executeUpdate();
-		}catch(SQLException e) {
+			pstmt.setString(1, dto.getBuy_num());
+			pstmt.setInt(3, dto.getLine());
+			pstmt.setString(4, dto.getI_code());
+			pstmt.setString(5, dto.getI_name());
+			pstmt.setInt(6, dto.getQuan());
+			pstmt.setInt(7, dto.getIn_price());
+			pstmt.setInt(8, dto.getPrice());
+			pstmt.setString(9, dto.getRe_date());
+			r = pstmt.executeUpdate();
+
+			System.out.println(r + " 건 입력되었습니다.");
+
+		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void DeleteProductInfo1(ProductDTO dto) {
+		sql = "delete from input_t where buy_num = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getBuy_num());
+			r = pstmt.executeUpdate();
+			System.out.println(r + " 건 제거되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void DeleteProductInfo2(ProductDTO dto) {
+		sql = "delete from input_t where sell_num = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getSell_num());
+			r = pstmt.executeUpdate();
+			System.out.println(r + " 건 제거되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public ResultSet UpdateProductInfo(ProductDTO dto) {
+		sql = "update input_t set buy_num, line, i_code, i_name, quan, in_price, price, re_date";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getBuy_num());
+			pstmt.setInt(2, dto.getLine());
+			pstmt.setString(3, dto.getI_code());
+			pstmt.setString(4, dto.getI_code());
+			pstmt.setInt(5, dto.getQuan());
+			pstmt.setInt(6, dto.getIn_price());
+			pstmt.setString(7, dto.getRe_date());
+
+			r = pstmt.executeUpdate();
+
+			System.out.println(r + " 건 변경되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return rs;
 	}
+
+	public ResultSet UpdateProductInfo1(ProductDTO dto) {
+		sql = "update output_t set buy_num, line, i_code, i_name, quan, out_price, price, re_date";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getBuy_num());
+			pstmt.setInt(2, dto.getLine());
+			pstmt.setString(3, dto.getI_code());
+			pstmt.setString(4, dto.getI_code());
+			pstmt.setInt(5, dto.getQuan());
+			pstmt.setInt(6, dto.getOut_price());
+			pstmt.setString(7, dto.getRe_date());
+
+			r = pstmt.executeUpdate();
+
+			System.out.println(r + " 건 변경되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rs;
+	}
+
 }

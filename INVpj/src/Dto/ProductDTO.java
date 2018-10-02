@@ -5,7 +5,7 @@ public class ProductDTO {
 
 	private String buy_num;
 	private String sell_num;
-	private String line;
+	private int line;
 	private String i_code;
 	private String i_name;
 	private int quan;
@@ -26,10 +26,10 @@ public class ProductDTO {
 	public void setSell_num(String sell_num) {
 		this.sell_num = sell_num;
 	}
-	public String getLine() {
+	public int getLine() {
 		return line;
 	}
-	public void setLine(String line) {
+	public void setLine(int line) {
 		this.line = line;
 	}
 	public String getI_code() {
@@ -74,13 +74,13 @@ public class ProductDTO {
 	public void setRe_date(String re_date) {
 		this.re_date = re_date;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProductDTO [buy_num=" + buy_num + ", sell_num=" + sell_num + ", line=" + line + ", i_code=" + i_code
 				+ ", i_name=" + i_name + ", quan=" + quan + ", in_price=" + in_price + ", out_price=" + out_price
 				+ ", price=" + price + ", re_date=" + re_date + "]";
 	}
+	
 	
 	
 	
