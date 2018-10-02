@@ -23,8 +23,5 @@ public class WarehouseDto {
 	public void setExp(String exp) {
 		this.exp = exp;
 	}
-	11111
 	
-	
-
 }
