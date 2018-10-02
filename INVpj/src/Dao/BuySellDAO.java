@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Dto.BuySellDto;
+import Dto.BuySellDTO;
 
 public class BuySellDAO {
 	private Connection conn;
@@ -30,7 +30,7 @@ public class BuySellDAO {
 		}
 	}// Constructor
 
-	public void insertBuyInfo(BuySellDto dto) {
+	public void insertBuyInfo(BuySellDTO dto) {
 		sql = "insert into buy_t (buyer, cp_name, address, ph, ceo) values(?,?,?,?,?) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class BuySellDAO {
 		}
 	}// end of insertBuyInfo
 
-	public void updateBuyInfo(BuySellDto dto) {
+	public void updateBuyInfo(BuySellDTO dto) {
 		sql = "update buy_t set cp_name=?, address=?, ph=?, ceo=? where buyer=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -81,15 +81,15 @@ public class BuySellDAO {
 	}// end of updateBuyInfo
 
 	public void selectBuyList() {
-		BuySellDto dto = null;
-		List<BuySellDto> list = new ArrayList<>();
+		BuySellDTO dto = null;
+		List<BuySellDTO> list = new ArrayList<>();
 
 		sql = "select buyer, cp_name, address, ph, ceo from buy_t ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				dto = new BuySellDto();
+				dto = new BuySellDTO();
 				dto.setBuyer(rs.getString("buyer"));
 				dto.setCp_name(rs.getString("cp_name"));
 				dto.setAddress(rs.getString("address"));
@@ -100,7 +100,7 @@ public class BuySellDAO {
 
 			}
 
-			for (BuySellDto d : list) {
+			for (BuySellDTO d : list) {
 				System.out.println(d);
 			}
 		} catch (SQLException e) {
@@ -117,7 +117,7 @@ public class BuySellDAO {
 
 	}// end of selectBuyList
 
-	public void insertSellInfo(BuySellDto dto) {
+	public void insertSellInfo(BuySellDTO dto) {
 		sql = "insert into buy_t (sellers, cp_name, address, ph, ceo) values(?,?,?,?,?) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -142,7 +142,7 @@ public class BuySellDAO {
 		}
 	}// end of insertBuyInfo
 
-	public void updateSellInfo(BuySellDto dto) {
+	public void updateSellInfo(BuySellDTO dto) {
 		sql = "update buy_t set cp_name=?, address=?, ph=?, ceo=? where buyer=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -168,15 +168,15 @@ public class BuySellDAO {
 	}// end of updateBuyInfo
 
 	public void selectSellList() {
-		BuySellDto dto = null;
-		List<BuySellDto> list = new ArrayList<>();
+		BuySellDTO dto = null;
+		List<BuySellDTO> list = new ArrayList<>();
 
 		sql = "select sellers, cp_name, address, ph, ceo from sell_t ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				dto = new BuySellDto();
+				dto = new BuySellDTO();
 				dto.setBuyer(rs.getString("buyer"));
 				dto.setCp_name(rs.getString("cp_name"));
 				dto.setAddress(rs.getString("address"));
@@ -187,7 +187,7 @@ public class BuySellDAO {
 
 			}
 
-			for (BuySellDto d : list) {
+			for (BuySellDTO d : list) {
 				System.out.println(d);
 			}
 		} catch (SQLException e) {

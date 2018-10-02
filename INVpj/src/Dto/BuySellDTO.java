@@ -1,6 +1,6 @@
 package Dto;
 
-public class BuySellDto {
+public class BuySellDTO {
 	private String buyer;
 	private String sellers;
 	private String cp_name;

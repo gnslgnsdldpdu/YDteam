@@ -3,7 +3,7 @@ package Main;
 import java.util.Scanner;
 
 import Dao.BuySellDAO;
-import Dto.BuySellDto;
+import Dto.BuySellDTO;
 
 public class BuySellProc {
 	public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class BuySellProc {
 
 			if (menu == 1) {
 				BuySellDAO dao = new BuySellDAO();
-				BuySellDto dto = new BuySellDto();
+				BuySellDTO dto = new BuySellDTO();
 				System.out.println("Buyer 입력:");
 				String buyer = sc.nextLine();
 				dto.setBuyer(buyer);
@@ -39,7 +39,7 @@ public class BuySellProc {
 
 			} else if (menu == 2) {
 				BuySellDAO dao = new BuySellDAO();
-				BuySellDto dto = new BuySellDto();
+				BuySellDTO dto = new BuySellDTO();
 				System.out.println("Buyer 입력:");
 				String buyer = sc.nextLine();
 				dto.setBuyer(buyer);
