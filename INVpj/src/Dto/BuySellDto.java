@@ -4,8 +4,8 @@ public class BuySellDto {
 	private String buyer;
 	private String sellers;
 	private String cp_name;
-	private String add;
-	private int ph;
+	private String address;
+	private int phone;
 
 	public String getBuyer() {
 		return buyer;
@@ -31,20 +31,26 @@ public class BuySellDto {
 		this.cp_name = cp_name;
 	}
 
-	public String getAdd() {
-		return add;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdd(String add) {
-		this.add = add;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public int getPh() {
-		return ph;
+	public int getPhone() {
+		return phone;
 	}
 
-	public void setPh(int ph) {
-		this.ph = ph;
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
+	@Override
+	public String toString() {
+		return "BuySellDto [buyer=" + buyer + ", sellers=" + sellers + ", cp_name=" + cp_name + ", address=" + address
+				+ ", phone=" + phone + "]";
 	}
 
 }
