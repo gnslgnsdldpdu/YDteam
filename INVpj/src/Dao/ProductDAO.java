@@ -28,18 +28,17 @@ public class ProductDAO {
 		}
 	}
 
-	public void insertProductInfo(ProductDTO dto) {
-		sql = "insert into input_t (buy_num, line, i_code, i_name, quan, in_price, price, input_date) values(?,?,?,?,?,?,?,?) ";
+	public void insertProductInfo(ProductDTO pdto) {
+		sql = "insert into input_t (buy_num, line, i_code, i_name, quan, in_price, price, input_date) values(?,?,?,?,?,?,?,Sysdate) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getBuy_num());
-			pstmt.setInt(3, dto.getLine());
-			pstmt.setString(4, dto.getI_code());
-			pstmt.setString(5, dto.getI_name());
-			pstmt.setInt(6, dto.getQuan());
-			pstmt.setInt(7, dto.getIn_price());
-			pstmt.setInt(8, dto.getPrice());
-			pstmt.setString(9, dto.getRe_date());
+			pstmt.setString(1, pdto.getBuy_num());
+			pstmt.setInt(2, pdto.getLine());
+			pstmt.setString(3, pdto.getI_code());
+			pstmt.setString(4, pdto.getI_name());
+			pstmt.setInt(5, pdto.getQuan());
+			pstmt.setInt(6, pdto.getIn_price());
+			pstmt.setInt(7, pdto.getPrice());
 			r = pstmt.executeUpdate();
 
 			System.out.println(r + " 건 입력되었습니다.");
@@ -55,11 +54,11 @@ public class ProductDAO {
 		}
 	}
 
-	public void DeleteProductInfo1(ProductDTO dto) {
+	public void DeleteProductInfo1(ProductDTO pdto) {
 		sql = "delete from input_t where buy_num = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getBuy_num());
+			pstmt.setString(1, pdto.getBuy_num());
 			r = pstmt.executeUpdate();
 			System.out.println(r + " 건 제거되었습니다.");
 
@@ -74,11 +73,11 @@ public class ProductDAO {
 		}
 	}
 
-	public void DeleteProductInfo2(ProductDTO dto) {
+	public void DeleteProductInfo2(ProductDTO pdto) {
 		sql = "delete from input_t where sell_num = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getSell_num());
+			pstmt.setString(1, pdto.getSell_num());
 			r = pstmt.executeUpdate();
 			System.out.println(r + " 건 제거되었습니다.");
 
