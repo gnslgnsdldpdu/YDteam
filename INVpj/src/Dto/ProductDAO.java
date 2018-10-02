@@ -3,7 +3,7 @@ package Dto;
 
 import java.util.Date;
 
-public class ProductDto {
+public class ProductDAO {
 
 
 	private String c_code;
