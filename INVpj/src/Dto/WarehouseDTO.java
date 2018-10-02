@@ -1,6 +1,6 @@
 package Dto;
 
-public class WarehouseDto {
+public class WarehouseDTO {
 	private String W_code;
 	private String w_name;
 	private String exp;

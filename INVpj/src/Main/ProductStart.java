@@ -1,16 +1,21 @@
 package Main;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import Dao.ProductDAO;
-import Dto.ProductDAO;
+import Dao.WarehouseDAO;
+import Dto.ProductDTO;
+import Dto.WarehouseDTO;
 
 public class ProductStart {
 	static Scanner sc = new Scanner(System.in);
 
-	public ProductStart() {
-		ProductDAO pdto = new ProductDAO();
+	public ProductStart() throws ClassNotFoundException, SQLException {
+		ProductDTO pdto = new ProductDTO();
 		ProductDAO pdao = new ProductDAO();
+		WarehouseDTO wdto = new WarehouseDTO();
+		WarehouseDAO wdao = new WarehouseDAO();
 
 		while (true) {
 			System.out.println("==================================================");
@@ -53,10 +58,10 @@ public class ProductStart {
 				int menu = Integer.parseInt(sc.next());
 				if (menu == 1) {
 					System.out.println("모든 창고별 품목현황.");
-					pdao.SelectWH();
+					wdao.SearchWH();
 				} else if (menu == 2) {
 					System.out.println("각 창고별 재고현황.");
-					pdao.SelectWH();
+					wdao.SearchWH();
 				} else {
 					System.out.println("상위 메뉴로 갑니다.");
 					continue;
@@ -68,7 +73,7 @@ public class ProductStart {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
 		ProductStart st = new ProductStart();
 	}

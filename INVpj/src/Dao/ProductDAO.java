@@ -7,9 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Dto.ItemDto;
-import Dto.ProductDAO;
-
 public class ProductDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
@@ -29,16 +26,6 @@ public class ProductDAO {
 			e.printStackTrace();
 		}
 	}// Constructor
-
-	public ResultSet SelectWH() {
-		sql = "select * from warehouse_t";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}return rs;
-	}
 	
 	public ResultSet insertItem(ProductDAO dto) {
 		sql = "insert into input_t values(LPAD(Seq_input.nextval,8,'0'),:buy_num,line,i_code,i_name,quan,unitp,price,inputdate)";
