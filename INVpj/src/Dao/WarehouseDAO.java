@@ -32,7 +32,8 @@ public class WarehouseDAO {
 	}// Constructor
 
 	public void insertWarehouse(WarehouseDTO wdt) {
-		sql = " insert into Warehouse_t values (?,?,?)";
+		
+		sql = " insert into Warehouse_t (w_code,w_name,exp) values (?,?,?) ";
 
 		try {
 			pstmt = conn.prepareStatement(sql);

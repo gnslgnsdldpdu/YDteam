@@ -23,5 +23,9 @@ public class WarehouseDTO {
 	public void setExp(String exp) {
 		this.exp = exp;
 	}
+	@Override
+	public String toString() {
+		return "WarehouseDTO [W_code=" + W_code + ", w_name=" + w_name + ", exp=" + exp + "]";
+	}
 	
 }

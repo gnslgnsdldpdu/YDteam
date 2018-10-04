@@ -28,7 +28,7 @@ public class WarehouseProc {
 				wdt.setW_name(W_name);;
 				System.out.println("exp 입력");
 				String exp = sc.nextLine();
-				wdt.setExp(exp);;
+				wdt.setExp(exp);
 				
 				wdo.insertWarehouse(wdt);
 				
@@ -45,7 +45,7 @@ public class WarehouseProc {
 				String exp = sc.nextLine();
 				wdt.setExp(exp);
 				
-				wdo.;
+//				wdo.updateWareHouse(wdt);
 				
 			} else if (menu == 3) {
 				WarehouseDAO wdo = new WarehouseDAO();
