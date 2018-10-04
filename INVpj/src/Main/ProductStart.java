@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 import Dao.BuySellDAO;
 import Dao.ProductDAO;
-import Dao.WarehouseDAO;
+import Dao.whDAO;
+import Dto.BuySellDTO;
 import Dto.ProductDTO;
-import Dto.WarehouseDTO;
+import Dto.whDTO;
 
 public class ProductStart {
 	static Scanner sc = new Scanner(System.in);
@@ -15,8 +16,10 @@ public class ProductStart {
 	public ProductStart() throws ClassNotFoundException, SQLException {
 		ProductDTO pdto = new ProductDTO();
 		ProductDAO pdao = new ProductDAO();
-		WarehouseDTO wdto = new WarehouseDTO();
-		WarehouseDAO wdao = new WarehouseDAO();
+		whDTO wdto = new whDTO();
+		whDAO wdao = new whDAO();
+		BuySellDAO  bsdao = new BuySellDAO();
+		BuySellDAO  bsdto = new BuySellDAO();
 
 		while (true) {
 			System.out.println("==================================================");
@@ -30,14 +33,66 @@ public class ProductStart {
 				int menu = Integer.parseInt(sc.next());
 				if (menu == 1) {
 					System.out.println("구매자정보.");
-					BuySellDAO bdao = new BuySellDAO();
-					bdao.selectBuyList();
+					bsdao.selectBuyList();
 				} else if (menu == 2) {
 					System.out.println("판매자정보.");
-					BuySellDAO sdao = new BuySellDAO();
-					sdao.selectSellList();
+					bsdao.selectSellList();
 				} else if (menu == 3) {
-					System.out.println("정보 수정 및 삭제.");
+					System.out.println("정보 수정 및 삭제");
+					System.out.println("==============================================================================" + "\n");
+					System.out.println("판매자정보를 수정 및 삭제 하시려면 1을 입력하시고, 구매자 정보를 수정및 삭제하시려면 2를 입력하세요.");
+					int psnum = Integer.parseInt(sc.next());
+					if(psnum==1) {
+						System.out.println("수정 : 1 , 삭제 : 2");
+						if (psnum == 1) {
+							BuySellDTO dto = new BuySellDTO();
+							BuySellDAO dao = new BuySellDAO();
+							System.out.println("========== 수 정 ==========");
+							System.out.println("수정할 구매자의 회사명을 입력하세요.");
+							sc.nextLine();
+							String cp_name = sc.nextLine();
+							dto.setCp_name(cp_name);
+							System.out.println("수정할 구매자의 지역을 입력하세요.");
+							String address = sc.nextLine();
+							dto.setAddress(address);
+							System.out.println("수정할 구매자의 전화번호를 입력하세요.");
+							String ph = sc.nextLine();
+							dto.setPhone(ph);
+							System.out.println("회사 대표명을 입력하세요.");
+							String ceo = sc.nextLine();
+							dto.setCeo(ceo);
+							dao.updateBuyInfo(dto);
+						}else {
+							BuySellDTO dto = new BuySellDTO();
+							BuySellDAO dao = new BuySellDAO();
+							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
+							String ceo = sc.next();
+//							dto.DeleteSellers(ceo);
+						}
+					}else {
+						System.out.println("수정 : 1 , 삭제 : 2");
+						if (psnum == 1) {
+							BuySellDTO dto = new BuySellDTO();
+							BuySellDAO dao = new BuySellDAO();
+							System.out.println("========== 수 정 ==========");
+							System.out.println("수정할 구매자의 회사명을 입력하세요.");
+							String cp_name = sc.nextLine();
+							dto.setCp_name(cp_name);
+							System.out.println("수정할 구매자의 지역을 입력하세요.");
+							String address = sc.nextLine();
+							dto.setAddress(address);
+							System.out.println("수정할 구매자의 전화번호를 입력하세요.");
+							String ph = sc.nextLine();
+							dto.setPhone(ph);
+							dao.updateSellInfo(dto);
+						}else {
+							BuySellDTO dto = new BuySellDTO();
+							BuySellDAO dao = new BuySellDAO();
+							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
+							String ceo = sc.next();
+//							dto.DeleteSellers(ceo);
+						}
+					}
 				} else {
 					System.out.println("상위메뉴로 갑니다.");
 					continue;
@@ -81,17 +136,15 @@ public class ProductStart {
 						continue;
 					}
 			} else if (x == 3) {
-				System.out.println("1. 창고현황 ||2. 창고별 재고현황 ||3. 창고 삭제 ||4. 상위메뉴");
+				System.out.println("1. 창고현황 ||2. 창고별 재고현황 ||3. 상위메뉴");
 				System.out.println(": ");
 				int menu = Integer.parseInt(sc.next());
 				if (menu == 1) {
 					System.out.println("======== 창고 현황 ========");
-					
-//					wdao.SearchWH();
+					whDAO viewarewdao = new whDAO();
+					viewarewdao.selectWareHouseList();
 				} else if (menu == 2) {
 					System.out.println("======== 창고별 재고현황 =========");
-				} else if (menu == 3) {
-					System.out.println("========= 창고 삭제 =========");
 				} else {
 					System.out.println("상위 메뉴로 갑니다.");
 					continue;
