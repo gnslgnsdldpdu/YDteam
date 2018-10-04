@@ -3,6 +3,7 @@ package Main;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import Dao.BuySellDAO;
 import Dao.ProductDAO;
 import Dao.WarehouseDAO;
 import Dto.ProductDTO;
@@ -29,8 +30,12 @@ public class ProductStart {
 				int menu = Integer.parseInt(sc.next());
 				if (menu == 1) {
 					System.out.println("구매자정보.");
+					BuySellDAO bdao = new BuySellDAO();
+					bdao.selectBuyList();
 				} else if (menu == 2) {
 					System.out.println("판매자정보.");
+					BuySellDAO sdao = new BuySellDAO();
+					sdao.selectSellList();
 				} else if (menu == 3) {
 					System.out.println("정보 수정 및 삭제.");
 				} else {
@@ -82,7 +87,7 @@ public class ProductStart {
 				if (menu == 1) {
 					System.out.println("======== 창고 현황 ========");
 					
-					wdao.SearchWH();
+//					wdao.SearchWH();
 				} else if (menu == 2) {
 					System.out.println("======== 창고별 재고현황 =========");
 				} else if (menu == 3) {

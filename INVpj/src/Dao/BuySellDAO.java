@@ -177,7 +177,7 @@ public class BuySellDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto = new BuySellDTO();
-				dto.setBuyer(rs.getString("buyer"));
+				dto.setSellers(rs.getString("sellers"));
 				dto.setCp_name(rs.getString("cp_name"));
 				dto.setAddress(rs.getString("address"));
 				dto.setPhone(rs.getString("ph"));
