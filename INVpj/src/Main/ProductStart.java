@@ -67,7 +67,7 @@ public class ProductStart {
 							BuySellDAO dao = new BuySellDAO();
 							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
 							String ceo = sc.next();
-							dto.DeleteSellers();
+							dto.getSellers();
 						}
 					}else {
 						System.out.println("수정 : 1 , 삭제 : 2");
@@ -88,13 +88,13 @@ public class ProductStart {
 								System.out.println("회사 대표명을 입력하세요.");
 								String ceo = sc.nextLine();
 								dto.setCeo(ceo);
-								dao.updatesellInfo(dto);
+								dao.updateSellInfo(dto);
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
 							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
 							String ceo = sc.next();
-//							dto.DeleteSellers(ceo);
+							dto.getSellers();
 						}
 					}
 				} else {
