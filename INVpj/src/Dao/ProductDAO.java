@@ -31,6 +31,7 @@ public class ProductDAO {
 	public void insertProductInfo(ProductDTO pdto) {
 		sql = "insert into input_t (buy_num, line, i_code, i_name, quan, in_price, price, input_date) values(?,?,?,?,?,?,?,Sysdate) ";
 		try {
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pdto.getBuy_num());
 			pstmt.setInt(2, pdto.getLine());

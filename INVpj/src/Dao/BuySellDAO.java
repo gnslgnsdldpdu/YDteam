@@ -56,15 +56,14 @@ public class BuySellDAO {
 	}// end of insertBuyInfo
 
 	public void updateBuyInfo(BuySellDTO dto) {
-		sql = "update buy_t set cp_name=?, address=?, ph=?, ceo=? where buyer=? ";
+		sql = "update sell_t set cp_name=?, address=?, ph=? where ceo=? ";
 		try {
+			System.out.println(dto.getCeo());	
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCp_name());
 			pstmt.setString(2, dto.getAddress());
 			pstmt.setString(3, dto.getPhone());
 			pstmt.setString(4, dto.getCeo());
-			pstmt.setString(5, dto.getBuyer());
-
 			r = pstmt.executeUpdate();
 
 			System.out.println(r + " 건 입력되었습니다.");
@@ -143,7 +142,7 @@ public class BuySellDAO {
 	}// end of insertBuyInfo
 
 	public void updateSellInfo(BuySellDTO dto) {
-		sql = "update buy_t set cp_name=?, address=?, ph=?, ceo=? where buyer=? ";
+		sql = "update buy_t set cp_name=?, address=?, ph=?, ceo=? where sellers=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCp_name());
@@ -203,4 +202,30 @@ public class BuySellDAO {
 		// return list;
 
 	}// end of selectBuyList
+	
+	public int DeleteSellers(int n) {
+		// 판매자 삭제
+		String sql = "DELETE FROM sell_t WHERE ceo = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, n);
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
+	
+	public int DeleteBuyer(int n) {
+		// 구매자 삭제
+		String sql = "DELETE FROM buy_t WHERE ceo = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, n);
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
 }
