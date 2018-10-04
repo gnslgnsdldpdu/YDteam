@@ -12,105 +12,106 @@ import Dto.WarehouseDTO;
 
 public class WarehouseDAO {
 
-	private Connection conn;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
-	private String sql;
-	public int r;
+   private Connection conn;
+   private PreparedStatement pstmt;
+   private ResultSet rs;
+   private String sql;
+   public int r;
 
-	public WarehouseDAO() {
-		try {
-			String user = "micol";
-			String pw = "1234";
-			String url = "jdbc:oracle:thin:@192.168.0.89:1521:xe";
+   public WarehouseDAO() {
+      try {
+         String user = "micol";
+         String pw = "1234";
+         String url = "jdbc:oracle:thin:@192.168.0.89:1521:xe";
 
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(url, user, pw);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}// Constructor
+         Class.forName("oracle.jdbc.driver.OracleDriver");
+         conn = DriverManager.getConnection(url, user, pw);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }// Constructor
 
-	public void insertWarehouse(WarehouseDTO wdt) {
-		sql = " insert into Warehouse_t values (?,?,?)";
+   public void insertWarehouse(WarehouseDTO wdt) {
+      
+      sql = " insert into Warehouse_t (w_code,w_name,exp) values (?,?,?) ";
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, wdt.getW_code());
-			pstmt.setString(2, wdt.getW_name());
-			pstmt.setString(3, wdt.getExp());
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, wdt.getW_code());
+         pstmt.setString(2, wdt.getW_name());
+         pstmt.setString(3, wdt.getExp());
 
-			r = pstmt.executeUpdate();
+         r = pstmt.executeUpdate();
 
-			System.out.println(r + " 건 입력되었습니다.");
+         System.out.println(r + " 건 입력되었습니다.");
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         try {
+            conn.close();
+         } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+      }
+   }
 
-	public void updateWareHouse(WarehouseDTO wdt) {
-		sql = "update Warehouse_t set W_name=?, EXP=? where W_code=?";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, wdt.getW_code());
-			pstmt.setString(2, wdt.getW_name());
-			pstmt.setString(3, wdt.getExp());
+   public void updateWareHouse(WarehouseDTO wdt) {
+      sql = "update Warehouse_t set W_name=?, EXP=? where W_code=?";
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, wdt.getW_name());
+         pstmt.setString(2, wdt.getExp());
+         pstmt.setString(3, wdt.getW_code());
 
-			r = pstmt.executeUpdate();
+         r = pstmt.executeUpdate();
 
-			System.out.println(r + " 건 입력되었습니다.");
+         System.out.println(r + " 건 입력되었습니다.");
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } finally {
+         try {
+            conn.close();
+         } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+         }
+      }
+   }
 
-	public void selectWareHouseList() {
-		WarehouseDTO wdt = null;
-		List<WarehouseDTO> list = new ArrayList<>();
+   public void selectWareHouseList() {
+      WarehouseDTO wdt = null;
+      List<WarehouseDTO> list = new ArrayList<>();
 
-		sql = "select W_code, W_name, Exp from Warehouse_t";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				wdt = new WarehouseDTO();
-				wdt.setW_code(rs.getString("W_code"));
-				wdt.setW_name(rs.getString("W_name"));
-				wdt.setExp(rs.getString("Exp"));
+      sql = "select W_code, W_name, Exp from Warehouse_t";
+      try {
+         pstmt = conn.prepareStatement(sql);
+         rs = pstmt.executeQuery();
+         while (rs.next()) {
+            wdt = new WarehouseDTO();
+            wdt.setW_code(rs.getString("W_code"));
+            wdt.setW_name(rs.getString("W_name"));
+            wdt.setExp(rs.getString("Exp"));
 
-				list.add(wdt);
+            list.add(wdt);
 
-			}
-			for (WarehouseDTO w : list) {
-				System.out.println(w);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+         }
+         for (WarehouseDTO w : list) {
+            System.out.println(w);
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         try {
+            conn.close();
+         } catch (SQLException e) {
+            e.printStackTrace();
+         }
+      }
+   }
 
 }

@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 import Dao.BuySellDAO;
 import Dao.ProductDAO;
-import Dao.whDAO;
+import Dao.WarehouseDAO;
 import Dto.BuySellDTO;
 import Dto.ProductDTO;
-import Dto.whDTO;
+import Dto.WarehouseDTO;
 
 public class ProductStart {
 	static Scanner sc = new Scanner(System.in);
@@ -16,8 +16,8 @@ public class ProductStart {
 	public ProductStart() throws ClassNotFoundException, SQLException {
 		ProductDTO pdto = new ProductDTO();
 		ProductDAO pdao = new ProductDAO();
-		whDTO wdto = new whDTO();
-		whDAO wdao = new whDAO();
+		WarehouseDTO wdto = new WarehouseDTO();
+		WarehouseDAO wdao = new WarehouseDAO();
 		BuySellDAO  bsdao = new BuySellDAO();
 		BuySellDAO  bsdto = new BuySellDAO();
 
@@ -145,7 +145,7 @@ public class ProductStart {
 				int menu = Integer.parseInt(sc.next());
 				if (menu == 1) {
 					System.out.println("======== 창고 현황 ========");
-					whDAO viewarewdao = new whDAO();
+					WarehouseDAO viewarewdao = new WarehouseDAO();
 					viewarewdao.selectWareHouseList();
 				} else if (menu == 2) {
 					System.out.println("======== 창고별 재고현황 =========");
