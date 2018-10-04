@@ -142,15 +142,13 @@ public class BuySellDAO {
 	}// end of insertBuyInfo
 
 	public void updateSellInfo(BuySellDTO dto) {
-		sql = "update buy_t set cp_name=?, address=?, ph=?, ceo=? where sellers=? ";
+		sql = "update sell_t set cp_name=?, address=?, ph=? where ceo=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCp_name());
 			pstmt.setString(2, dto.getAddress());
 			pstmt.setString(3, dto.getPhone());
 			pstmt.setString(4, dto.getCeo());
-			pstmt.setString(5, dto.getSellers());
-
 			r = pstmt.executeUpdate();
 
 			System.out.println(r + " 건 입력되었습니다.");

@@ -61,30 +61,34 @@ public class ProductStart {
 							System.out.println("회사 대표명을 입력하세요.");
 							String ceo = sc.nextLine();
 							dto.setCeo(ceo);
-							dao.updateBuyInfo(dto);
+							dao.updateSellInfo(dto);
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
 							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
 							String ceo = sc.next();
-//							dto.DeleteSellers(ceo);
+							dto.DeleteSellers();
 						}
 					}else {
 						System.out.println("수정 : 1 , 삭제 : 2");
 						if (psnum == 1) {
-							BuySellDTO dto = new BuySellDTO();
-							BuySellDAO dao = new BuySellDAO();
-							System.out.println("========== 수 정 ==========");
-							System.out.println("수정할 구매자의 회사명을 입력하세요.");
-							String cp_name = sc.nextLine();
-							dto.setCp_name(cp_name);
-							System.out.println("수정할 구매자의 지역을 입력하세요.");
-							String address = sc.nextLine();
-							dto.setAddress(address);
-							System.out.println("수정할 구매자의 전화번호를 입력하세요.");
-							String ph = sc.nextLine();
-							dto.setPhone(ph);
-							dao.updateSellInfo(dto);
+								BuySellDTO dto = new BuySellDTO();
+								BuySellDAO dao = new BuySellDAO();
+								System.out.println("========== 수 정 ==========");
+								System.out.println("수정할 판매자의 회사명을 입력하세요.");
+								sc.nextLine();
+								String cp_name = sc.nextLine();
+								dto.setCp_name(cp_name);
+								System.out.println("수정할 판매자의 지역을 입력하세요.");
+								String address = sc.nextLine();
+								dto.setAddress(address);
+								System.out.println("수정할 판매자의 전화번호를 입력하세요.");
+								String ph = sc.nextLine();
+								dto.setPhone(ph);
+								System.out.println("회사 대표명을 입력하세요.");
+								String ceo = sc.nextLine();
+								dto.setCeo(ceo);
+								dao.updatesellInfo(dto);
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
