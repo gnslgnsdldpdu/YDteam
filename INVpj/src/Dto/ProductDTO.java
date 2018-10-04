@@ -74,6 +74,7 @@ public class ProductDTO {
 	public void setRe_date(String re_date) {
 		this.re_date = re_date;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProductDTO [buy_num=" + buy_num + ", sell_num=" + sell_num + ", line=" + line + ", i_code=" + i_code
