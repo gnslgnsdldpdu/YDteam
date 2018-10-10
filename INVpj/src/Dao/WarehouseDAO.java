@@ -62,9 +62,9 @@ public class WarehouseDAO {
 		sql = "update Warehouse_t set W_name=?, EXP=? where W_code=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, wdt.getW_code());
-			pstmt.setString(2, wdt.getW_name());
-			pstmt.setString(3, wdt.getExp());
+			pstmt.setString(1, wdt.getW_name());
+			pstmt.setString(2, wdt.getExp());
+			pstmt.setString(3, wdt.getW_code());
 
 			r = pstmt.executeUpdate();
 

@@ -25,7 +25,8 @@ public class WarehouseDTO {
 	}
 	@Override
 	public String toString() {
-		return "WarehouseDTO [W_code=" + W_code + ", w_name=" + w_name + ", exp=" + exp + "]";
+		return "창고코드:" + W_code +", 창고명:"
+				+ ""+  w_name + " 창고" + ", 창고 설명: " + exp ;
 	}
 	
 }
