@@ -3,28 +3,19 @@ package Dto;
 public class ProductDTO {
 
 
-	private String buy_num;
-	private String sell_num;
+	private String p_num;
 	private int line;
 	private String i_code;
 	private String i_name;
 	private int quan;
-	private int in_price;
-	private int out_price;
+	private int p_price;
 	private int price;
 	private String re_date;
-	
-	public String getBuy_num() {
-		return buy_num;
+	public String getP_num() {
+		return p_num;
 	}
-	public void setBuy_num(String buy_num) {
-		this.buy_num = buy_num;
-	}
-	public String getSell_num() {
-		return sell_num;
-	}
-	public void setSell_num(String sell_num) {
-		this.sell_num = sell_num;
+	public void setP_num(String p_num) {
+		this.p_num = p_num;
 	}
 	public int getLine() {
 		return line;
@@ -50,17 +41,11 @@ public class ProductDTO {
 	public void setQuan(int quan) {
 		this.quan = quan;
 	}
-	public int getIn_price() {
-		return in_price;
+	public int getP_price() {
+		return p_price;
 	}
-	public void setIn_price(int in_price) {
-		this.in_price = in_price;
-	}
-	public int getOut_price() {
-		return out_price;
-	}
-	public void setOut_price(int out_price) {
-		this.out_price = out_price;
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
 	}
 	public int getPrice() {
 		return price;
@@ -74,13 +59,15 @@ public class ProductDTO {
 	public void setRe_date(String re_date) {
 		this.re_date = re_date;
 	}
-	
 	@Override
 	public String toString() {
-		return "ProductDTO [buy_num=" + buy_num + ", sell_num=" + sell_num + ", line=" + line + ", i_code=" + i_code
-				+ ", i_name=" + i_name + ", quan=" + quan + ", in_price=" + in_price + ", out_price=" + out_price
-				+ ", price=" + price + ", re_date=" + re_date + "]";
+		return "ProductDTO [p_num=" + p_num + ", line=" + line + ", i_code=" + i_code + ", i_name=" + i_name + ", quan="
+				+ quan + ", p_price=" + p_price + ", price=" + price + ", re_date=" + re_date + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

@@ -31,15 +31,9 @@ public class WarehouseDAO {
       }
    }// Constructor
 
-<<<<<<< HEAD
-	public void insertWarehouse(WarehouseDTO wdt) {
-		
-		sql = " insert into Warehouse_t (w_code,w_name,exp) values (?,?,?) ";
-=======
    public void insertWarehouse(WarehouseDTO wdt) {
       
       sql = " insert into Warehouse_t (w_code,w_name,exp) values (?,?,?) ";
->>>>>>> branch 'master' of https://github.com/gnslgnsdldpdu/YDteam.git
 
       try {
          pstmt = conn.prepareStatement(sql);
@@ -64,15 +58,6 @@ public class WarehouseDAO {
       }
    }
 
-<<<<<<< HEAD
-	public void updateWareHouse(WarehouseDTO wdt) {
-		sql = "update Warehouse_t set W_name=?, EXP=? where W_code=?";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, wdt.getW_name());
-			pstmt.setString(2, wdt.getExp());
-			pstmt.setString(3, wdt.getW_code());
-=======
    public void updateWareHouse(WarehouseDTO wdt) {
       sql = "update Warehouse_t set W_name=?, EXP=? where W_code=?";
       try {
@@ -80,7 +65,6 @@ public class WarehouseDAO {
          pstmt.setString(1, wdt.getW_name());
          pstmt.setString(2, wdt.getExp());
          pstmt.setString(3, wdt.getW_code());
->>>>>>> branch 'master' of https://github.com/gnslgnsdldpdu/YDteam.git
 
          r = pstmt.executeUpdate();
 

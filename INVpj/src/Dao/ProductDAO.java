@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Dto.ProductDTO;
+import Dto.ProioDTO;
 
 public class ProductDAO {
 	private Connection conn;
@@ -29,16 +32,16 @@ public class ProductDAO {
 	}
 
 	public void insertProductInfo(ProductDTO pdto) {
-		sql = "insert into input_t (buy_num, line, i_code, i_name, quan, in_price, price, input_date) values(?,?,?,?,?,?,?,Sysdate) ";
+		sql = "insert into proio_t (p_num, line, i_code, i_name, quan, p_price, price, io_date) values(?,?,?,?,?,?,?,Sysdate) ";
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pdto.getBuy_num());
+			pstmt.setString(1, pdto.getP_num());
 			pstmt.setInt(2, pdto.getLine());
 			pstmt.setString(3, pdto.getI_code());
 			pstmt.setString(4, pdto.getI_name());
 			pstmt.setInt(5, pdto.getQuan());
-			pstmt.setInt(6, pdto.getIn_price());
+			pstmt.setInt(6, pdto.getP_price());
 			pstmt.setInt(7, pdto.getPrice());
 			r = pstmt.executeUpdate();
 
@@ -55,55 +58,37 @@ public class ProductDAO {
 		}
 	}
 
-	public void DeleteProductInfo1(ProductDTO pdto) {
-		sql = "delete from input_t where buy_num = ?";
+//	public void DeleteProductInfo1(ProductDTO pdto) {
+//		sql = "delete from input_t where buy_num = ?";
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, pdto.getBuy_num());
+//			r = pstmt.executeUpdate();
+//			System.out.println(r + " 건 제거되었습니다.");
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				conn.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+
+
+
+	public void UpdateProductInfo(ProductDTO dto) {
+		sql = "update proio_t set i_code=?, i_name=?, quan=?, p_price=? where p_num=? ";
 		try {
+			System.out.println(dto.getI_code()+dto.getI_name()+dto.getP_num());
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pdto.getBuy_num());
-			r = pstmt.executeUpdate();
-			System.out.println(r + " 건 제거되었습니다.");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void DeleteProductInfo2(ProductDTO pdto) {
-		sql = "delete from input_t where sell_num = ?";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pdto.getSell_num());
-			r = pstmt.executeUpdate();
-			System.out.println(r + " 건 제거되었습니다.");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public ResultSet UpdateProductInfo(ProductDTO dto) {
-		sql = "update input_t set buy_num, line, i_code, i_name, quan, in_price, price, re_date";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getBuy_num());
-			pstmt.setInt(2, dto.getLine());
-			pstmt.setString(3, dto.getI_code());
-			pstmt.setString(4, dto.getI_code());
-			pstmt.setInt(5, dto.getQuan());
-			pstmt.setInt(6, dto.getIn_price());
-			pstmt.setString(7, dto.getRe_date());
+			pstmt.setString(1, dto.getI_code());
+			pstmt.setString(2, dto.getI_name());
+			pstmt.setInt(3, dto.getQuan());
+			pstmt.setInt(4, dto.getP_price());
+			pstmt.setString(5, dto.getP_num());
 
 			r = pstmt.executeUpdate();
 
@@ -118,35 +103,39 @@ public class ProductDAO {
 				e.printStackTrace();
 			}
 		}
-		return rs;
+	
 	}
-
-	public ResultSet UpdateProductInfo1(ProductDTO dto) {
-		sql = "update output_t set buy_num, line, i_code, i_name, quan, out_price, price, re_date";
+	
+	public void selectProioList() {  //ProioDao
+		ProioDTO pit = null;
+		List<ProioDTO> list = new ArrayList<>();
+		
+		sql = "SELECT P_num ,line, I_CODE  ,I_NAME, QUAN  ,P_PRICE , PRICE , Io_DATE   FROM proio_t";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getBuy_num());
-			pstmt.setInt(2, dto.getLine());
-			pstmt.setString(3, dto.getI_code());
-			pstmt.setString(4, dto.getI_code());
-			pstmt.setInt(5, dto.getQuan());
-			pstmt.setInt(6, dto.getOut_price());
-			pstmt.setString(7, dto.getRe_date());
-
-			r = pstmt.executeUpdate();
-
-			System.out.println(r + " 건 변경되었습니다.");
-
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				pit = new ProioDTO();
+				pit.setP_num(rs.getString("P_num"));
+				pit.setLine(rs.getString("Line"));
+				pit.setI_code(rs.getString("I_code"));
+				pit.setI_name(rs.getString("I_name"));
+				pit.setQuan(rs.getInt("Quan"));
+				pit.setP_price(rs.getInt("P_price"));
+				pit.setPrice(rs.getInt("Price"));
+				// 상품정보 bean 생성
+				list.add(pit);
+				
+			}
+			for (ProioDTO p : list) {
+				System.out.println(p);
+			}
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
 		}
-		return rs;
+		}
 	}
 
-}

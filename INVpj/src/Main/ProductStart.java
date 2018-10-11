@@ -107,13 +107,13 @@ public class ProductStart {
 					int menu = Integer.parseInt(sc.next());
 					if (menu == 1) {
 						System.out.println("========== 입고 ==========");
-						System.out.println("구매자번호를 입력하세요");
+						System.out.println("상품번호를 입력하세요");
 						sc.nextLine();
-						String buy_num = sc.nextLine();
-						pdto.setBuy_num(buy_num);
-						System.out.println("상품번호을 입력하세요");
+						String p_num = sc.nextLine();
+						pdto.setP_num(p_num);
+						System.out.println("상품코드을 입력하세요");
 						String i_code = sc.nextLine();
-						pdto.setBuy_num(i_code);
+						pdto.setI_code(i_code);
 						System.out.println("상품명을 입력하세요");
 						String i_name = sc.nextLine();
 						pdto.setI_name(i_name);
@@ -121,34 +121,50 @@ public class ProductStart {
 						int quan = sc.nextInt();
 						pdto.setQuan(quan);
 						System.out.println("입고할 가격(단가)를 입력하세요");
-						int in_price = sc.nextInt();
-						pdto.setIn_price(in_price);
-						System.out.println("총 가격은 "+ quan*in_price + "입니다.");
+						int p_price = sc.nextInt();
+						pdto.setP_price(p_price);
+						System.out.println("총 가격은 "+ quan*p_price + "입니다.");
 						pdao.insertProductInfo(pdto);
 					} else if (menu == 2) {
 						System.out.println("========== 출고 ==========");
-						
+						System.out.println("상품번호를 입력하세요");
+						sc.nextLine();
+						String p_num = sc.nextLine();
+						pdto.setP_num(p_num);
+						System.out.println("상품코드을 입력하세요");
+						String i_code = sc.nextLine();
+						pdto.setI_code(i_code);
+						System.out.println("상품명을 입력하세요");
+						String i_name = sc.nextLine();
+						pdto.setI_name(i_name);
+						System.out.println("수량을 입력하세요");
+						int quan = sc.nextInt();
+						pdto.setQuan(quan);
+						System.out.println("입고할 가격(단가)를 입력하세요");
+						int p_price = sc.nextInt();
+						pdto.setP_price(p_price);
+						System.out.println("총 가격은 "+ quan*p_price + "입니다.");
+						pdao.UpdateProductInfo(pdto);
 					} else if (menu == 3) {
 						System.out.println("========== 조회 ==========");
-						
+					ProductDAO pit = new ProductDAO();
+				     	pit.selectProioList();
 					} else if (menu == 4) {
 						System.out.println("========== 삭제 ==========");
-						System.out.println("삭제할 상품명을 입력하세요.");
-						pdao.DeleteProductInfo1(pdto);
+//						System.out.println("삭제할 상품명을 입력하세요.");
+//						pdao.DeleteProductInfo1(pdto);
 					} else {
 						System.out.println("상위 메뉴로 갑니다.");
 						continue;
 					}
 			} else if (x == 3) {
-				System.out.println("1. 창고현황 ||2. 창고별 재고현황 ||3. 상위메뉴");
+				System.out.println("1. 창고현황 ||2. 상위메뉴");
 				System.out.println(": ");
 				int menu = Integer.parseInt(sc.next());
 				if (menu == 1) {
 					System.out.println("======== 창고 현황 ========");
 					WarehouseDAO viewarewdao = new WarehouseDAO();
 					viewarewdao.selectWareHouseList();
-				} else if (menu == 2) {
-					System.out.println("======== 창고별 재고현황 =========");
 				} else {
 					System.out.println("상위 메뉴로 갑니다.");
 					continue;
