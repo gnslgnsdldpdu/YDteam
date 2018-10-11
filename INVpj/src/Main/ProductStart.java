@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 import Dao.BuySellDAO;
 import Dao.ProductDAO;
-import Dao.whDAO;
+import Dao.WarehouseDAO;
 import Dto.BuySellDTO;
 import Dto.ProductDTO;
-import Dto.whDTO;
+import Dto.WarehouseDTO;
 
 public class ProductStart {
 	static Scanner sc = new Scanner(System.in);
@@ -16,8 +16,8 @@ public class ProductStart {
 	public ProductStart() throws ClassNotFoundException, SQLException {
 		ProductDTO pdto = new ProductDTO();
 		ProductDAO pdao = new ProductDAO();
-		whDTO wdto = new whDTO();
-		whDAO wdao = new whDAO();
+		WarehouseDTO wdto = new WarehouseDTO();
+		WarehouseDAO wdao = new WarehouseDAO();
 		BuySellDAO  bsdao = new BuySellDAO();
 		BuySellDAO  bsdto = new BuySellDAO();
 
@@ -61,36 +61,40 @@ public class ProductStart {
 							System.out.println("회사 대표명을 입력하세요.");
 							String ceo = sc.nextLine();
 							dto.setCeo(ceo);
-							dao.updateBuyInfo(dto);
-						}else {
-							BuySellDTO dto = new BuySellDTO();
-							BuySellDAO dao = new BuySellDAO();
-							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
-							String ceo = sc.next();
-//							dto.DeleteSellers(ceo);
-						}
-					}else {
-						System.out.println("수정 : 1 , 삭제 : 2");
-						if (psnum == 1) {
-							BuySellDTO dto = new BuySellDTO();
-							BuySellDAO dao = new BuySellDAO();
-							System.out.println("========== 수 정 ==========");
-							System.out.println("수정할 구매자의 회사명을 입력하세요.");
-							String cp_name = sc.nextLine();
-							dto.setCp_name(cp_name);
-							System.out.println("수정할 구매자의 지역을 입력하세요.");
-							String address = sc.nextLine();
-							dto.setAddress(address);
-							System.out.println("수정할 구매자의 전화번호를 입력하세요.");
-							String ph = sc.nextLine();
-							dto.setPhone(ph);
 							dao.updateSellInfo(dto);
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
 							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
 							String ceo = sc.next();
-//							dto.DeleteSellers(ceo);
+							dto.getSellers();
+						}
+					}else {
+						System.out.println("수정 : 1 , 삭제 : 2");
+						if (psnum == 1) {
+								BuySellDTO dto = new BuySellDTO();
+								BuySellDAO dao = new BuySellDAO();
+								System.out.println("========== 수 정 ==========");
+								System.out.println("수정할 판매자의 회사명을 입력하세요.");
+								sc.nextLine();
+								String cp_name = sc.nextLine();
+								dto.setCp_name(cp_name);
+								System.out.println("수정할 판매자의 지역을 입력하세요.");
+								String address = sc.nextLine();
+								dto.setAddress(address);
+								System.out.println("수정할 판매자의 전화번호를 입력하세요.");
+								String ph = sc.nextLine();
+								dto.setPhone(ph);
+								System.out.println("회사 대표명을 입력하세요.");
+								String ceo = sc.nextLine();
+								dto.setCeo(ceo);
+								dao.updateSellInfo(dto);
+						}else {
+							BuySellDTO dto = new BuySellDTO();
+							BuySellDAO dao = new BuySellDAO();
+							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
+							String ceo = sc.next();
+							dto.getSellers();
 						}
 					}
 				} else {
@@ -141,7 +145,7 @@ public class ProductStart {
 				int menu = Integer.parseInt(sc.next());
 				if (menu == 1) {
 					System.out.println("======== 창고 현황 ========");
-					whDAO viewarewdao = new whDAO();
+					WarehouseDAO viewarewdao = new WarehouseDAO();
 					viewarewdao.selectWareHouseList();
 				} else if (menu == 2) {
 					System.out.println("======== 창고별 재고현황 =========");
