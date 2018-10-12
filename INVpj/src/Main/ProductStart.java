@@ -151,8 +151,11 @@ public class ProductStart {
 				     	pit.selectProioList();
 					} else if (menu == 4) {
 						System.out.println("========== 삭제 ==========");
-//						System.out.println("삭제할 상품명을 입력하세요.");
-//						pdao.DeleteProductInfo1(pdto);
+						System.out.println("삭제할 상품명을 입력하세요.");
+						sc.nextLine();
+						String i_name = sc.nextLine();
+						pdto.setI_name(i_name);
+						pdao.DeleteProductInfo(pdto);
 					} else {
 						System.out.println("상위 메뉴로 갑니다.");
 						continue;

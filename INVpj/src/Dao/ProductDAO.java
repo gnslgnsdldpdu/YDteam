@@ -58,24 +58,24 @@ public class ProductDAO {
 		}
 	}
 
-//	public void DeleteProductInfo1(ProductDTO pdto) {
-//		sql = "delete from input_t where buy_num = ?";
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, pdto.getBuy_num());
-//			r = pstmt.executeUpdate();
-//			System.out.println(r + " 건 제거되었습니다.");
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				conn.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
+	public void DeleteProductInfo(ProductDTO pdto) {
+		sql = "delete from proio_t where i_name = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pdto.getI_name());
+			r = pstmt.executeUpdate();
+			System.out.println(r + " 건 제거되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 
 
@@ -138,4 +138,3 @@ public class ProductDAO {
 		}
 		}
 	}
-
