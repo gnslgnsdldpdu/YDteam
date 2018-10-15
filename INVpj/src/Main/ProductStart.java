@@ -44,7 +44,9 @@ public class ProductStart {
 					int psnum = Integer.parseInt(sc.next());
 					if(psnum==1) {
 						System.out.println("수정 : 1 , 삭제 : 2");
-						if (psnum == 1) {
+						System.out.println(": ");					//추가(10.12)
+						int psnum1 = sc.nextInt();sc.nextLine();	//추가(10.12)
+						if (psnum1 == 1) {                          //추가에 의한 수정psnum1(10.12)
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
 							System.out.println("========== 수 정 ==========");
@@ -61,17 +63,19 @@ public class ProductStart {
 							System.out.println("회사 대표명을 입력하세요.");
 							String ceo = sc.nextLine();
 							dto.setCeo(ceo);
-							dao.updateSellInfo(dto);
+							dao.updateSellInfo(dto);//수정?
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
-							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
+							System.out.println("삭제할 구매자의 CEO를 입력하세요.");  //판매자 -> 구매자(10.12)
 							String ceo = sc.next();
-							dto.getSellers();
+							dto.getSellers();//수정?
 						}
 					}else {
 						System.out.println("수정 : 1 , 삭제 : 2");
-						if (psnum == 1) {
+						System.out.println(": ");					//추가(10.12)
+						int psnum2 = sc.nextInt();sc.nextLine();	//추가(10.12)
+						if (psnum2 == 1) {                          //추가에 의한 수정psnum2(10.12)
 								BuySellDTO dto = new BuySellDTO();
 								BuySellDAO dao = new BuySellDAO();
 								System.out.println("========== 수 정 ==========");
@@ -88,13 +92,13 @@ public class ProductStart {
 								System.out.println("회사 대표명을 입력하세요.");
 								String ceo = sc.nextLine();
 								dto.setCeo(ceo);
-								dao.updateSellInfo(dto);
+								dao.updateSellInfo(dto);//수정?
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
 							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
 							String ceo = sc.next();
-							dto.getSellers();
+							dto.getSellers();//수정?
 						}
 					}
 				} else {
