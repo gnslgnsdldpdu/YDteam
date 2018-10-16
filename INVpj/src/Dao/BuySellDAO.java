@@ -201,29 +201,33 @@ public class BuySellDAO {
 
 	}// end of selectBuyList
 	
-	public int DeleteSellers(int n) {
+	public void DeleteSellers(BuySellDTO dto) {
 		// 판매자 삭제
 		String sql = "DELETE FROM sell_t WHERE ceo = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, n);
+			pstmt.setString(1, dto.getCeo());
+			r = pstmt.executeUpdate();
+			System.out.println(r + " 건 입력되었습니다.");
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return r;
+		
 	}
 	
-	public int DeleteBuyer(int n) {
+	public void DeleteBuyer(BuySellDTO dto) {
 		// 구매자 삭제
 		String sql = "DELETE FROM buy_t WHERE ceo = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, n);
+			pstmt.setString(1, dto.getCeo());
+			r = pstmt.executeUpdate();
+			System.out.println(r + "건 입력되었습니다.");
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return r;
+		
 	}
 }

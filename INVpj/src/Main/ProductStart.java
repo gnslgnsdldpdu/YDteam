@@ -45,31 +45,34 @@ public class ProductStart {
 					if(psnum==1) {
 						System.out.println("수정 : 1 , 삭제 : 2");
 						System.out.println(": ");					//추가(10.12)
-						int psnum1 = sc.nextInt();sc.nextLine();	//추가(10.12)
+						int psnum1 = sc.nextInt();					//추가(10.12)
 						if (psnum1 == 1) {                          //추가에 의한 수정psnum1(10.12)
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
 							System.out.println("========== 수 정 ==========");
-							System.out.println("수정할 구매자의 회사명을 입력하세요.");
+							System.out.println("수정할 판매자의 회사명을 입력하세요.");
 							sc.nextLine();
 							String cp_name = sc.nextLine();
 							dto.setCp_name(cp_name);
-							System.out.println("수정할 구매자의 지역을 입력하세요.");
+							System.out.println("수정할 판매자의 지역을 입력하세요.");
 							String address = sc.nextLine();
 							dto.setAddress(address);
-							System.out.println("수정할 구매자의 전화번호를 입력하세요.");
+							System.out.println("수정할 판매자의 전화번호를 입력하세요.");
 							String ph = sc.nextLine();
 							dto.setPhone(ph);
 							System.out.println("회사 대표명을 입력하세요.");
 							String ceo = sc.nextLine();
 							dto.setCeo(ceo);
 							dao.updateSellInfo(dto);//수정?
+							continue;
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
-							System.out.println("삭제할 구매자의 CEO를 입력하세요.");  //판매자 -> 구매자(10.12)
+							System.out.println("삭제할 판매자의 CEO를 입력하세요.");  //판매자 -> 구매자(10.12)
 							String ceo = sc.next();
-							dto.getSellers();//수정?
+							dto.setCeo(ceo);
+							dao.DeleteSellers(dto);//수정?
+							continue;
 						}
 					}else {
 						System.out.println("수정 : 1 , 삭제 : 2");
@@ -79,26 +82,29 @@ public class ProductStart {
 								BuySellDTO dto = new BuySellDTO();
 								BuySellDAO dao = new BuySellDAO();
 								System.out.println("========== 수 정 ==========");
-								System.out.println("수정할 판매자의 회사명을 입력하세요.");
+								System.out.println("수정할 구매자의 회사명을 입력하세요.");
 								sc.nextLine();
 								String cp_name = sc.nextLine();
 								dto.setCp_name(cp_name);
-								System.out.println("수정할 판매자의 지역을 입력하세요.");
+								System.out.println("수정할 구매자의 지역을 입력하세요.");
 								String address = sc.nextLine();
 								dto.setAddress(address);
-								System.out.println("수정할 판매자의 전화번호를 입력하세요.");
+								System.out.println("수정할 구매자의 전화번호를 입력하세요.");
 								String ph = sc.nextLine();
 								dto.setPhone(ph);
 								System.out.println("회사 대표명을 입력하세요.");
 								String ceo = sc.nextLine();
 								dto.setCeo(ceo);
-								dao.updateSellInfo(dto);//수정?
+								dao.updateBuyInfo(dto);//수정?
+								continue;
 						}else {
 							BuySellDTO dto = new BuySellDTO();
 							BuySellDAO dao = new BuySellDAO();
-							System.out.println("삭제할 판매자의 CEO를 입력하세요.");
+							System.out.println("삭제할 판매자의 CEO를 입력하세요.");  //판매자 -> 구매자(10.12)
 							String ceo = sc.next();
-							dto.getSellers();//수정?
+							dto.setCeo(ceo);
+							dao.DeleteBuyer(dto);//수정?
+							continue;
 						}
 					}
 				} else {
@@ -129,6 +135,7 @@ public class ProductStart {
 						pdto.setP_price(p_price);
 						System.out.println("총 가격은 "+ quan*p_price + "입니다.");
 						pdao.insertProductInfo(pdto);
+						continue;
 					} else if (menu == 2) {
 						System.out.println("========== 출고 ==========");
 						System.out.println("상품번호를 입력하세요");
@@ -149,10 +156,12 @@ public class ProductStart {
 						pdto.setP_price(p_price);
 						System.out.println("총 가격은 "+ quan*p_price + "입니다.");
 						pdao.UpdateProductInfo(pdto);
+						continue;
 					} else if (menu == 3) {
 						System.out.println("========== 조회 ==========");
 					ProductDAO pit = new ProductDAO();
 				     	pit.selectProioList();
+				     	continue;
 					} else if (menu == 4) {
 						System.out.println("========== 삭제 ==========");
 						System.out.println("삭제할 상품명을 입력하세요.");
@@ -160,6 +169,7 @@ public class ProductStart {
 						String i_name = sc.nextLine();
 						pdto.setI_name(i_name);
 						pdao.DeleteProductInfo(pdto);
+						continue;
 					} else {
 						System.out.println("상위 메뉴로 갑니다.");
 						continue;
@@ -172,6 +182,7 @@ public class ProductStart {
 					System.out.println("======== 창고 현황 ========");
 					WarehouseDAO viewarewdao = new WarehouseDAO();
 					viewarewdao.selectWareHouseList();
+					continue;
 				} else {
 					System.out.println("상위 메뉴로 갑니다.");
 					continue;

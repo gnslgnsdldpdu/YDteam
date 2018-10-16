@@ -58,8 +58,8 @@ public class BuySellDTO {
 
 	@Override
 	public String toString() {
-		return "BuySellDto [buyer=" + buyer + ", sellers=" + sellers + ", cp_name=" + cp_name + ", address=" + address
-				+ ", phone=" + phone + ", ceo=" + ceo + "]";
+		return "구매자 = " + buyer + ", 판매자 = " + sellers + ", 회사이름 = " + cp_name + ", 지역 = " + address
+				+ ", 연락처 = " + phone + ", 대표자 = " + ceo + "]";
 	}
 
 }
