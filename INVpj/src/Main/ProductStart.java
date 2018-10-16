@@ -19,7 +19,7 @@ public class ProductStart {
 		WarehouseDTO wdto = new WarehouseDTO();
 		WarehouseDAO wdao = new WarehouseDAO();
 		BuySellDAO  bsdao = new BuySellDAO();
-		BuySellDAO  bsdto = new BuySellDAO();
+//		BuySellDAO  bsdto = new BuySellDAO();
 
 		while (true) {
 			System.out.println("==================================================");
@@ -40,7 +40,7 @@ public class ProductStart {
 				} else if (menu == 3) {
 					System.out.println("정보 수정 및 삭제");
 					System.out.println("==============================================================================" + "\n");
-					System.out.println("판매자정보를 수정 및 삭제 하시려면 1을 입력하시고, 구매자 정보를 수정및 삭제하시려면 2를 입력하세요.");
+					System.out.println("판매자정보 : 1을 입력, 구매자 정보 : 2 입력");
 					int psnum = Integer.parseInt(sc.next());
 					if(psnum==1) {
 						System.out.println("수정 : 1 , 삭제 : 2");

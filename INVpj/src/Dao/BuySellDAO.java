@@ -94,22 +94,22 @@ public class BuySellDAO {
 				dto.setAddress(rs.getString("address"));
 				dto.setPhone(rs.getString("ph"));
 				dto.setCeo(rs.getString("ceo"));
-
+				System.out.println(dto);
 				list.add(dto);
 
 			}
 
-			for (BuySellDTO d : list) {
-				System.out.println(d);
-			}
+//			for (BuySellDTO d : list) {
+//				System.out.println(d);
+//			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+//		} finally {
+//			try {
+//				conn.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
 		}
 
 		// return list;
